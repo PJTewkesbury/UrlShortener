@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.WebUtilities;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddSingleton<ILiteDatabase, LiteDatabase>(_ => new LiteDatabase("short-links.db"));
+builder.Configuration.AddJsonFile("appsettings.json", false, true);
+// builder.WebHost.UseUrls("https://*:5500;");
 await using var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
